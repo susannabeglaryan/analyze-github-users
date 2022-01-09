@@ -11,6 +11,6 @@ class UserServiceTest {
 
     @Test
     public void getAllUsers() {
-        userService.getAllUsers("5", "");
+        userService.saveUsers();
     }
 }

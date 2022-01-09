@@ -11,7 +11,7 @@ class GitHubClientTest {
 
     @Test
     void getAllUsers() {
-        gitHubClient.getAllUsers("10", "");
+        gitHubClient.getAllUsers(10);
     }
 
     @Test

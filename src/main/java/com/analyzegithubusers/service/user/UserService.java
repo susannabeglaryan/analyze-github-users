@@ -10,19 +10,12 @@ import reactor.core.publisher.Flux;
 public class UserService {
     UserProvider userProvider;
 
-    public Flux<User> getAllUsers(String perPage, String since) {
-        userProvider.getAllUsers(perPage, since).subscribe((user) -> {
+    public Flux<User> saveUsers() {
+        userProvider.getAllUsers().subscribe((user) -> {
+            //TODO Save user
             var a = user.getUserDetails();
             System.out.println(a.getName());
         });
-        try
-        {
-            Thread.sleep(6000);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
         return null;
     }
 

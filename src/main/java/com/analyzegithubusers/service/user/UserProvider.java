@@ -6,5 +6,5 @@ import reactor.core.publisher.Flux;
 import java.util.List;
 
 public interface UserProvider {
-    Flux<User> getAllUsers(String perPage, String since);
+    Flux<User> getAllUsers();
 }
