@@ -5,12 +5,14 @@ import com.analyzegithubusers.service.github.model.GithubUserResponse;
 import com.analyzegithubusers.service.user.model.User;
 import com.analyzegithubusers.service.user.model.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserMapper {
 
     public static UserDetails toUserDetails(GithubUserDetailsResponse userResponse) {
+        LocalDateTime createdAt = LocalDateTime.parse(userResponse.getCreatedAt().replace("Z", ""));
         return UserDetails.builder()
                 .name(userResponse.getName())
                 .company(userResponse.getCompany())
@@ -19,7 +21,7 @@ public class UserMapper {
                 .publicRepos(userResponse.getPublicRepos())
                 .followers(userResponse.getFollowers())
                 .following(userResponse.getFollowing())
-                .createdAt(userResponse.getCreatedAt())
+                .createdAt(createdAt)
                 .totalPrivateRepos(userResponse.getTotalPrivateRepos())
                 .ownedPrivateRepos(userResponse.getOwnedPrivateRepos())
                 .build();

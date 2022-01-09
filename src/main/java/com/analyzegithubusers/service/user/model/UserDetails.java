@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Setter
 @Getter
@@ -26,7 +28,7 @@ public class UserDetails {
 
     private Integer following;
 
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     private Integer totalPrivateRepos;
 
