@@ -2,10 +2,9 @@ package com.analyzegithubusers.service.github.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @Getter
@@ -20,7 +19,9 @@ public class GitHubConfig {
     private String baseUrl;
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().basicAuthentication(username, token).rootUri(baseUrl).build();
+    public WebClient webClient() {
+        return WebClient.builder().baseUrl(baseUrl).defaultHeaders(header -> {
+            header.setBasicAuth(username, token);
+        }).build();
     }
 }

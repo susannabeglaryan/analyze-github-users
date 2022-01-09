@@ -24,40 +24,10 @@ public class GithubUserResponse {
     @JsonProperty("html_url")
     private String htmlUrl;
 
-    @JsonProperty("name")
-    private String name;
-
     @JsonProperty("followers_url")
     private String followersUrl;
 
     @JsonProperty("following_url")
     private String followingUrl;
-
-    @JsonProperty("company")
-    private String company;
-
-    @JsonProperty("location")
-    private String location;
-
-    @JsonProperty("email")
-    private String email;
-
-    @JsonProperty("public_repos")
-    private Integer publicRepos;
-
-    @JsonProperty("followers")
-    private Integer followers;
-
-    @JsonProperty("following")
-    private Integer following;
-
-    @JsonProperty("created_at")
-    private String createdAt;
-
-    @JsonProperty("total_private_repos")
-    private Integer totalPrivateRepos;
-
-    @JsonProperty("owned_private_repos")
-    private Integer ownedPrivateRepos;
 
 }

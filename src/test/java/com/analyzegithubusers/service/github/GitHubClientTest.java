@@ -11,11 +11,11 @@ class GitHubClientTest {
 
     @Test
     void getAllUsers() {
-        var result = gitHubClient.getAllUsers("10", "");
+        gitHubClient.getAllUsers("10", "");
     }
 
     @Test
     void getUser() {
-        var result = gitHubClient.getUser("susannabeglaryan");
+        gitHubClient.getUser("susannabeglaryan");
     }
 }
