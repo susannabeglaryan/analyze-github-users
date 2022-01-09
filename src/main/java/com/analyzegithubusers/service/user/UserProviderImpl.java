@@ -18,7 +18,7 @@ public class UserProviderImpl implements UserProvider {
     public Flux<User> getAllUsers(UserFilter userFilter) {
         final int countPerPage = 100;
         Flux<User> result = Flux.empty();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             var since = i + i * countPerPage;
             var chunk = gitHubClient.getAllUsers(countPerPage, since)
                     .map(UserMapper::toUser)

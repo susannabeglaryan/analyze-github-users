@@ -13,7 +13,7 @@ public class GithubUserResponse {
     private String login;
 
     @JsonProperty("id")
-    private String id;
+    private Long id;
 
     @JsonProperty("avatar_url")
     private String avatarUrl;
