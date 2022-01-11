@@ -1,7 +1,7 @@
 package com.analyzegithubusers.persistence;
 
-import com.analyzegithubusers.db.entity.UserEntity;
+import com.analyzegithubusers.service.user.model.User;
 
 public interface UserDAO {
-    UserEntity save(UserEntity user);
+    User save(User user);
 }
