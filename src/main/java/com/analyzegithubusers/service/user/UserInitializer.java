@@ -1,5 +1,6 @@
 package com.analyzegithubusers.service.user;
 
+import com.analyzegithubusers.service.user.impl.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -11,4 +11,6 @@ public interface UserDAO {
     Flux<User> findAll(@Nullable String login, String company, String location, Pageable pageable);
 
     Flux<UserEntity> saveAll(Flux<User> users);
+
+    Flux<User> findAll();
 }

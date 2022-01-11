@@ -1,9 +1,10 @@
-package com.analyzegithubusers.service.user;
+package com.analyzegithubusers.service.user.impl;
 
 import com.analyzegithubusers.service.github.GitHubClient;
-import com.analyzegithubusers.persistence.mapper.UserDSMapper;
 import com.analyzegithubusers.model.User;
 import com.analyzegithubusers.service.github.mapper.GithubUserMapper;
+import com.analyzegithubusers.service.user.UserFilter;
+import com.analyzegithubusers.service.user.IUserProvider;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import reactor.core.publisher.Flux;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class UserProviderImpl implements UserProvider {
+class UserProvider implements IUserProvider {
     private final GitHubClient gitHubClient;
 
     @Override

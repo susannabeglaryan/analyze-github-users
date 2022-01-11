@@ -4,16 +4,9 @@ import com.analyzegithubusers.model.User;
 import com.analyzegithubusers.persistence.UserDAO;
 import com.analyzegithubusers.persistence.entity.UserEntity;
 import com.analyzegithubusers.persistence.mapper.UserDSMapper;
-import com.analyzegithubusers.persistence.repository.TestRepo;
 import com.analyzegithubusers.persistence.repository.UserRepository;
-import com.analyzegithubusers.service.filter.UserSpecBuilder;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
@@ -46,6 +39,11 @@ public class JPAUserDAO implements UserDAO {
     @Override
     public Flux<UserEntity> saveAll(Flux<User> users) {
         return userRepository.saveAll(users.map(UserDSMapper::toUserEntity));
+    }
+
+    @Override
+    public Flux<User> findAll() {
+        return userRepository.findAll().map(UserDSMapper::toUser);
     }
 
     private boolean isNullSafe(String field1, String field2) {

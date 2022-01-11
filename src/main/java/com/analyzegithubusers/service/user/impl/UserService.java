@@ -1,7 +1,9 @@
-package com.analyzegithubusers.service.user;
+package com.analyzegithubusers.service.user.impl;
 
 import com.analyzegithubusers.model.User;
 import com.analyzegithubusers.persistence.UserDAO;
+import com.analyzegithubusers.service.user.IUserProvider;
+import com.analyzegithubusers.service.user.UserSavingFilter;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -11,10 +13,10 @@ import java.time.Month;
 
 @Service
 public class UserService {
-    private final UserProvider userProvider;
+    private final IUserProvider userProvider;
     private final UserDAO userDAO;
 
-    public UserService(UserProvider userProvider, UserDAO userDAO) {
+    public UserService(IUserProvider userProvider, UserDAO userDAO) {
         this.userProvider = userProvider;
         this.userDAO = userDAO;
     }

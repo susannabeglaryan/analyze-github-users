@@ -2,7 +2,7 @@ package com.analyzegithubusers.controller;
 
 import com.analyzegithubusers.controller.dto.UserResponseDTO;
 import com.analyzegithubusers.controller.mapper.UserViewMapper;
-import com.analyzegithubusers.service.user.UserService;
+import com.analyzegithubusers.service.user.impl.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
