@@ -1,2 +1,2 @@
-# analyze-github-users
+# Analyze GitHub Users
 Analyze GitHub Users
