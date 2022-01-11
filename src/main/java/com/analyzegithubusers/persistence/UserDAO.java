@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserDAO {
     User save(User user);
 
-    Page<User> findAll(@Nullable String login, Pageable pageable);
+    Page<User> findAll(@Nullable String login, String company, String location, Pageable pageable);
 
     Page<User> findAll(Pageable pageable);
 

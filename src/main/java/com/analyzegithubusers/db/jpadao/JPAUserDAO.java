@@ -37,8 +37,12 @@ public class JPAUserDAO implements UserDAO {
     }
 
     @Override
-    public Page<User> findAll(@Nullable String login, Pageable pageable) {
-        Specification<UserEntity> spec = new UserSpecBuilder().loginLike(login).build();
+    public Page<User> findAll(String login, String company, String location, Pageable pageable) {
+        Specification<UserEntity> spec = new UserSpecBuilder()
+                .loginLike(login)
+                .companyIs(company)
+                .locationIs(location)
+                .build();
         var all = userRepository.findAll(spec, pageable);
         return all.map(UserMapper::toUser);
     }

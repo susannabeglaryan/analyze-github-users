@@ -29,9 +29,11 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<Page<UserResponseDTO>> getPagedUsers(
             @RequestParam(required = false) String login,
+            @RequestParam(required = false) String company,
+            @RequestParam(required = false) String location,
             @PageableDefault(sort = "profileCreatedAt", direction = Sort.Direction.ASC) Pageable pageable
     ) {
-        Page<UserResponseDTO> response = userService.getPagedUsers(login, pageable)
+        Page<UserResponseDTO> response = userService.getPagedUsers(login, company, location, pageable)
                 .map(UserMapper::toUserResponseDTO);
         return ResponseEntity.ok(response);
     }

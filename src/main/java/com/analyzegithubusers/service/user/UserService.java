@@ -34,8 +34,8 @@ public class UserService {
         });
     }
 
-    public Page<User> getPagedUsers(String login, Pageable pageable) {
-        return userDAO.findAll(login, pageable);
+    public Page<User> getPagedUsers(String login, String company, String location, Pageable pageable) {
+        return userDAO.findAll(login, company, location, pageable);
     }
 
     public Map<String, List<User>> getUsersGroupedByCompany() {
