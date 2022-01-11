@@ -25,5 +25,6 @@
             <column name="total_private_repos" type="INTEGER"/>
             <column name="owned_private_repos" type="INTEGER"/>
         </createTable>
+        <addUniqueConstraint tableName="users" columnNames="source_id" constraintName="source_id_uc" />
     </changeSet>
 </databaseChangeLog>

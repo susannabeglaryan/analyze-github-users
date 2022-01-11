@@ -1,4 +1,4 @@
-package com.analyzegithubusers.service.user.model;
+package com.analyzegithubusers.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserResponseDTO {
+
     private String login;
 
     private Long id;
@@ -26,6 +27,6 @@ public class User {
 
     private String followingUrl;
 
-    private UserDetails userDetails;
+    private UserDetailsDTO userDetails;
 
 }

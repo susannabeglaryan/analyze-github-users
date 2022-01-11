@@ -1,6 +1,6 @@
 package com.analyzegithubusers.service.user;
 
-import com.analyzegithubusers.service.user.model.User;
+import com.analyzegithubusers.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

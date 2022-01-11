@@ -1,4 +1,4 @@
-package com.analyzegithubusers.service.user.model;
+package com.analyzegithubusers.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

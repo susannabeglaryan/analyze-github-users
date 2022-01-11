@@ -1,13 +1,16 @@
-package com.analyzegithubusers.service.user.mapper;
+package com.analyzegithubusers.model.mapper;
 
 import com.analyzegithubusers.db.entity.UserEntity;
+import com.analyzegithubusers.model.User;
+import com.analyzegithubusers.model.UserDetails;
+import com.analyzegithubusers.model.UserDetailsDTO;
+import com.analyzegithubusers.model.UserResponseDTO;
 import com.analyzegithubusers.service.github.model.GithubUserDetailsResponse;
 import com.analyzegithubusers.service.github.model.GithubUserResponse;
-import com.analyzegithubusers.service.user.model.User;
-import com.analyzegithubusers.service.user.model.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UserMapper {
@@ -82,7 +85,7 @@ public class UserMapper {
                 .build();
         return User.builder()
                 .login(userEntity.getLogin())
-                .id(userEntity.getSourceId())
+                .id(userEntity.getId())
                 .avatarUrl(userEntity.getAvatarUrl())
                 .url(userEntity.getUrl())
                 .htmlUrl(userEntity.getHtmlUrl())
@@ -91,4 +94,65 @@ public class UserMapper {
                 .userDetails(userDetails)
                 .build();
     }
+
+    public static User toUser(UserResponseDTO userResponseDTO) {
+        var details = userResponseDTO.getUserDetails();
+        var userDetails = UserDetails.builder()
+                .name(details.getName())
+                .company(details.getCompany())
+                .location(details.getLocation())
+                .email(details.getEmail())
+                .publicRepos(details.getPublicRepos())
+                .followers(details.getFollowers())
+                .following(details.getFollowing())
+                .createdAt(details.getCreatedAt())
+                .totalPrivateRepos(details.getTotalPrivateRepos())
+                .ownedPrivateRepos(details.getOwnedPrivateRepos())
+                .build();
+        return User.builder()
+                .login(userResponseDTO.getLogin())
+                .id(userResponseDTO.getId())
+                .avatarUrl(userResponseDTO.getAvatarUrl())
+                .url(userResponseDTO.getUrl())
+                .htmlUrl(userResponseDTO.getHtmlUrl())
+                .followersUrl(userResponseDTO.getFollowersUrl())
+                .followingUrl(userResponseDTO.getFollowingUrl())
+                .userDetails(userDetails)
+                .build();
+    }
+
+    public static UserResponseDTO toUserResponseDTO(User user) {
+        var details = user.getUserDetails();
+        var userDetails = UserDetailsDTO.builder()
+                .name(details.getName())
+                .company(details.getCompany())
+                .location(details.getLocation())
+                .email(details.getEmail())
+                .publicRepos(details.getPublicRepos())
+                .followers(details.getFollowers())
+                .following(details.getFollowing())
+                .createdAt(details.getCreatedAt())
+                .totalPrivateRepos(details.getTotalPrivateRepos())
+                .ownedPrivateRepos(details.getOwnedPrivateRepos())
+                .build();
+        return UserResponseDTO.builder()
+                .login(user.getLogin())
+                .id(user.getId())
+                .avatarUrl(user.getAvatarUrl())
+                .url(user.getUrl())
+                .htmlUrl(user.getHtmlUrl())
+                .followersUrl(user.getFollowersUrl())
+                .followingUrl(user.getFollowingUrl())
+                .userDetails(userDetails)
+                .build();
+    }
+
+    public static Map<String, List<UserResponseDTO>> toUserResponseDTOMap(Map<String, List<User>> userMap) {
+        return userMap.entrySet().stream().map(entry -> {
+            var list = entry.getValue().stream()
+                    .map(UserMapper::toUserResponseDTO).collect(Collectors.toList());
+            return Map.entry(entry.getKey(), list);
+        }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
 }

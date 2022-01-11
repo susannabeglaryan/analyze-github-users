@@ -1,8 +1,8 @@
 package com.analyzegithubusers.service.user;
 
 import com.analyzegithubusers.service.github.GitHubClient;
-import com.analyzegithubusers.service.user.mapper.UserMapper;
-import com.analyzegithubusers.service.user.model.User;
+import com.analyzegithubusers.model.mapper.UserMapper;
+import com.analyzegithubusers.model.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class UserProviderImpl implements UserProvider {
     public Flux<User> getAllUsers(UserFilter userFilter) {
         final int countPerPage = 100;
         Flux<User> result = Flux.empty();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             var since = i + i * countPerPage;
             var chunk = gitHubClient.getAllUsers(countPerPage, since)
                     .map(UserMapper::toUser)
