@@ -1,6 +1,6 @@
 package com.analyzegithubusers.service.filter;
 
-import com.analyzegithubusers.db.entity.UserEntity;
+import com.analyzegithubusers.persistence.entity.UserEntity;
 
 public class UserSpecBuilder extends BaseSpecBuilder<UserEntity> {
 

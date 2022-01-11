@@ -1,18 +1,14 @@
 package com.analyzegithubusers.persistence;
 
 import com.analyzegithubusers.model.User;
-import org.springframework.data.domain.Page;
+import com.analyzegithubusers.persistence.entity.UserEntity;
 import org.springframework.data.domain.Pageable;
+import reactor.core.publisher.Flux;
 import reactor.util.annotation.Nullable;
 
-import java.util.List;
-
 public interface UserDAO {
-    User save(User user);
 
-    Page<User> findAll(@Nullable String login, String company, String location, Pageable pageable);
+    Flux<User> findAll(@Nullable String login, String company, String location, Pageable pageable);
 
-    Page<User> findAll(Pageable pageable);
-
-    List<User> findAll();
+    Flux<UserEntity> saveAll(Flux<User> users);
 }

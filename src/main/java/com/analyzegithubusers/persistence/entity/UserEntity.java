@@ -1,4 +1,4 @@
-package com.analyzegithubusers.db.entity;
+package com.analyzegithubusers.persistence.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity(name = "UserEntity")
-@Table(name = "users")
+@Table(name = "user_entity")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

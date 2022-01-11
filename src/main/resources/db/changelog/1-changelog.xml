@@ -3,7 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="1-1" author="susanna_beglaryan">
-        <createTable tableName="users">
+        <createTable tableName="user_entity">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="user_pk" nullable="false"/>
             </column>
@@ -25,6 +25,6 @@
             <column name="total_private_repos" type="INTEGER"/>
             <column name="owned_private_repos" type="INTEGER"/>
         </createTable>
-        <addUniqueConstraint tableName="users" columnNames="source_id" constraintName="source_id_uc" />
+        <addUniqueConstraint tableName="user_entity" columnNames="source_id" constraintName="source_id_uc" />
     </changeSet>
 </databaseChangeLog>

@@ -1,8 +1,9 @@
 package com.analyzegithubusers.service.user;
 
 import com.analyzegithubusers.service.github.GitHubClient;
-import com.analyzegithubusers.model.mapper.UserMapper;
+import com.analyzegithubusers.persistence.mapper.UserDSMapper;
 import com.analyzegithubusers.model.User;
+import com.analyzegithubusers.service.github.mapper.GithubUserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -21,10 +22,10 @@ public class UserProviderImpl implements UserProvider {
         for (int i = 0; i < 10; i++) {
             var since = i + i * countPerPage;
             var chunk = gitHubClient.getAllUsers(countPerPage, since)
-                    .map(UserMapper::toUser)
+                    .map(GithubUserMapper::toUser)
                     .flatMap(user -> gitHubClient.getUser(user.getLogin())
                             .onErrorContinue((err, o) -> log.warn(err.getMessage(), o))
-                            .map(UserMapper::toUserDetails)
+                            .map(GithubUserMapper::toUserDetails)
                             .map(userDetails -> {
                                 user.setUserDetails(userDetails);
                                 return user;
