@@ -24,4 +24,5 @@ public interface IUserGroupController {
     @Operation(summary = "Get grouped users by location",
             description = "Use this API to retrieve user list grouped by location.")
     Flux<UserGroupResponseDTO> getUsersGroupedByLocation();
+    
 }
