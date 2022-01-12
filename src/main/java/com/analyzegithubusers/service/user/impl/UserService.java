@@ -3,6 +3,7 @@ package com.analyzegithubusers.service.user.impl;
 import com.analyzegithubusers.model.User;
 import com.analyzegithubusers.persistence.UserDAO;
 import com.analyzegithubusers.service.user.IUserProvider;
+import com.analyzegithubusers.service.user.IUserService;
 import com.analyzegithubusers.service.user.UserSavingFilter;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 @Service
-public class UserService {
+class UserService implements IUserService {
     private final IUserProvider userProvider;
     private final UserDAO userDAO;
 
@@ -21,6 +22,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
+    @Override
     public void saveUsers() {
         UserSavingFilter userFilter = new UserSavingFilter();
         userFilter.setPublicReposMoreThan(5);
@@ -32,6 +34,7 @@ public class UserService {
                 .subscribe(u -> System.out.println(u.getEmail()));
     }
 
+    @Override
     public Flux<User> getPagedUsers(String login, String company, String location, Pageable pageable) {
         return userDAO.findAll(login, company, location, pageable);
     }

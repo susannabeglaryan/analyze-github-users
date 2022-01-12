@@ -9,20 +9,21 @@ import java.time.LocalDateTime;
 
 public class GithubUserMapper {
 
-    public static UserDetails toUserDetails(GithubUserDetailsResponse userResponse) {
+    public static User setUserDetails(User user, GithubUserDetailsResponse userResponse) {
         LocalDateTime createdAt = LocalDateTime.parse(userResponse.getCreatedAt().replace("Z", ""));
-        return UserDetails.builder()
-                .name(userResponse.getName())
-                .company(userResponse.getCompany())
-                .location(userResponse.getLocation())
-                .email(userResponse.getEmail())
-                .publicRepos(userResponse.getPublicRepos())
-                .followers(userResponse.getFollowers())
-                .following(userResponse.getFollowing())
-                .createdAt(createdAt)
-                .totalPrivateRepos(userResponse.getTotalPrivateRepos())
-                .ownedPrivateRepos(userResponse.getOwnedPrivateRepos())
-                .build();
+
+        user.setName(userResponse.getName());
+        user.setCompany(userResponse.getCompany());
+        user.setLocation(userResponse.getLocation());
+        user.setEmail(userResponse.getEmail());
+        user.setPublicRepos(userResponse.getPublicRepos());
+        user.setFollowers(userResponse.getFollowers());
+        user.setFollowing(userResponse.getFollowing());
+        user.setCreatedAt(createdAt);
+        user.setTotalPrivateRepos(userResponse.getTotalPrivateRepos());
+        user.setOwnedPrivateRepos(userResponse.getOwnedPrivateRepos());
+
+        return user;
     }
 
     public static User toUser(GithubUserResponse userResponse) {

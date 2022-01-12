@@ -13,26 +13,28 @@ import reactor.core.publisher.GroupedFlux;
 class UserGroupService implements IUserGroupService {
     private final UserDAO userDAO;
 
+    @Override
     public Flux<GroupedFlux<String, User>> getUsersGroupedByCompany() {
         return userDAO.findAll()
                 .map(u -> {
-                    if (u.getUserDetails().getCompany() == null){
-                        u.getUserDetails().setCompany("N/A");
+                    if (u.getCompany() == null){
+                        u.setCompany("N/A");
                     }
                     return u;
                 })
-                .groupBy(u -> u.getUserDetails().getCompany());
+                .groupBy(User::getCompany);
     }
 
+    @Override
     public Flux<GroupedFlux<String, User>> getUsersGroupedByLocation() {
         return userDAO.findAll()
                 .map(u -> {
-                    if (u.getUserDetails().getLocation() == null){
-                        u.getUserDetails().setLocation("N/A");
+                    if (u.getLocation() == null){
+                        u.setLocation("N/A");
                     }
                     return u;
                 })
-                .groupBy(u -> u.getUserDetails().getLocation());
+                .groupBy(User::getLocation);
     }
 
 }

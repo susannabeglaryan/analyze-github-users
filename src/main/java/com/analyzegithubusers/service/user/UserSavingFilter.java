@@ -26,14 +26,14 @@ public class UserSavingFilter implements UserFilter {
     }
 
     private boolean isPublicReposMatching(User user) {
-       return publicReposMoreThan == null || user.getUserDetails().getPublicRepos() > publicReposMoreThan;
+       return publicReposMoreThan == null || user.getPublicRepos() > publicReposMoreThan;
     }
 
     private boolean isFollowersMatching(User user) {
-       return followersMoreThan == null || user.getUserDetails().getFollowers() > followersMoreThan;
+       return followersMoreThan == null || user.getFollowers() > followersMoreThan;
     }
 
     private boolean isProfileAgeMatching(User user) {
-        return profileCreatedAfter == null || user.getUserDetails().getCreatedAt().isAfter(profileCreatedAfter);
+        return profileCreatedAfter == null || user.getCreatedAt().isAfter(profileCreatedAfter);
     }
 }

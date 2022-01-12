@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
+import static com.analyzegithubusers.service.github.mapper.GithubUserMapper.setUserDetails;
+
 @Component
 @AllArgsConstructor
 @Slf4j
@@ -20,15 +22,14 @@ class UserProvider implements IUserProvider {
     public Flux<User> getAllUsers(UserFilter userFilter) {
         final int countPerPage = 100;
         Flux<User> result = Flux.empty();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             var since = i + i * countPerPage;
             var chunk = gitHubClient.getAllUsers(countPerPage, since)
                     .map(GithubUserMapper::toUser)
                     .flatMap(user -> gitHubClient.getUser(user.getLogin())
                             .onErrorContinue((err, o) -> log.warn(err.getMessage(), o))
-                            .map(GithubUserMapper::toUserDetails)
                             .map(userDetails -> {
-                                user.setUserDetails(userDetails);
+                                setUserDetails(user, userDetails);
                                 return user;
                             })
                             .filter(userFilter::isMatching)

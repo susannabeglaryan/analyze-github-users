@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class UserViewMapper {
 
     public static UserResponseDTO toUserResponseDTO(User user) {
-        var details = user.getUserDetails();
         return UserResponseDTO.builder()
                 .login(user.getLogin())
                 .id(user.getId())
@@ -18,16 +17,16 @@ public class UserViewMapper {
                 .htmlUrl(user.getHtmlUrl())
                 .followersUrl(user.getFollowersUrl())
                 .followingUrl(user.getFollowingUrl())
-                .name(details.getName())
-                .company(details.getCompany())
-                .location(details.getLocation())
-                .email(details.getEmail())
-                .publicRepos(details.getPublicRepos())
-                .followers(details.getFollowers())
-                .following(details.getFollowing())
-                .createdAt(details.getCreatedAt())
-                .totalPrivateRepos(details.getTotalPrivateRepos())
-                .ownedPrivateRepos(details.getOwnedPrivateRepos())
+                .name(user.getName())
+                .company(user.getCompany())
+                .location(user.getLocation())
+                .email(user.getEmail())
+                .publicRepos(user.getPublicRepos())
+                .followers(user.getFollowers())
+                .following(user.getFollowing())
+                .createdAt(user.getCreatedAt())
+                .totalPrivateRepos(user.getTotalPrivateRepos())
+                .ownedPrivateRepos(user.getOwnedPrivateRepos())
                 .build();
     }
 

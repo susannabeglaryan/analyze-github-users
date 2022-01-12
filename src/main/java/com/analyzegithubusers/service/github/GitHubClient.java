@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 public class GitHubClient {
     private static final String GET_USERS_URL = "/users";
     private static final String SINCE_PARAM = "since";
-    private static final String USERNAME_PARAM = "username";
     private static final String PER_PAGE_PARAM = "per_page";
 
     private final WebClient webClient;

@@ -27,7 +27,11 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.20'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-	implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.2.32'
+	implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.3'
+}
+
+bootJar {
+	archiveFileName = "app.${archiveExtension.get()}"
 }
 
 test {
