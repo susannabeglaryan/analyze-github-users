@@ -9,9 +9,12 @@ reactively using WebFlux.
 
 ## Getting Started with docker
 * Generate GitHub token https://github.com/settings/tokens
-* Set environment variables on .env file
-(e.g. `GITHUB_USERNAME`=_yourgithubusername_, `GITHUB_TOKEN`=_yourgeneratedtoken_)
+* Create .env file and set `GITHUB_USERNAME` and `GITHUB_TOKEN` environment variables 
+(e.g. `GITHUB_USERNAME`=_yourgithubusername_   `GITHUB_TOKEN`=_yourgeneratedtoken_)
 * run `docker-compose --env-file .env  up`
+
+Here you can find how to install docker and docker compose if
+you don't have it on your machine: https://docs.docker.com/compose/install/
 
 ## Features
 * Grab and save GitHub users data
@@ -20,7 +23,7 @@ reactively using WebFlux.
 * API for getting grouped users by company
 * API for getting grouped users by location
 
-For detailed API information check swagger documentation.
+For detailed API information check swagger documentation. http://localhost:8080/webjars/swagger-ui/index.html
 
 ## Tech
 * Java 11
